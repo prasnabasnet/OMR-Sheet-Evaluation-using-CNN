@@ -61,7 +61,7 @@ Each OMR sheet is preprocessed through:
 
 ### Training & Validation Accuracy
 
-![Accuracy Plot](images/accuracy_plot.png)
+![Image Alt](https://github.com/prasnabasnet/OMR-Sheet-Evaluation-using-CNN/blob/main/T&A.jpg?raw=true)
 
 The model converges quickly and achieves **~99% validation accuracy** within a few epochs.
 
