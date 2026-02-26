@@ -6,7 +6,7 @@
 
 ---
 
-##Result of the GUI
+## Result of the GUI
 
 | OMR Sheet Input | Evaluator UI Output |
 |---|---|
@@ -84,16 +84,18 @@ Training loss drops sharply and validation loss remains consistently low, indica
 **Overall Test Accuracy: ~99.4%**
 
 
-## 🖥️ GUI Interface
+##  GUI Interface
 
 The desktop GUI allows teachers to:
 - Upload any scanned OMR sheet
 - View the detected answer per question (A/B/C/D, Invalid, or Unfilled)
 - See the final score automatically calculated
 
+- ![Image Alt](https://github.com/prasnabasnet/OMR-Sheet-Evaluation-using-CNN/blob/main/omrsheetevaluatongui.jpg?raw=true)
+
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Category | Tools |
 |---|---|
