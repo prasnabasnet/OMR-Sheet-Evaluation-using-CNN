@@ -73,7 +73,7 @@ Training loss drops sharply and validation loss remains consistently low, indica
 
 ### Confusion Matrix
 
-![Confusion Matrix](images/confusion_matrix.png)
+![Image Alt](https://github.com/prasnabasnet/OMR-Sheet-Evaluation-using-CNN/blob/main/confusuin%20matrix.jpg?raw=true)
 
 | Class | Correct | Misclassified |
 |---|---|---|
