@@ -15,7 +15,7 @@
 
 | OMR Sheet Input | Evaluator UI Output |
 |---|---|
-| ![OMR Sheet](images/omrdataset.jpg) | ![Evaluator UI](images/result.jpg) |
+| !![Image Alt](https://github.com/prasnabasnet/OMR-Sheet-Evaluation-using-CNN/blob/main/omrdataset.jpg?raw=true) | ![Image Alt](https://github.com/prasnabasnet/OMR-Sheet-Evaluation-using-CNN/blob/main/result.jpg?raw=true) |
 
 ---
 
