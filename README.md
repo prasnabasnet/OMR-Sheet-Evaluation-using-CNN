@@ -1,12 +1,12 @@
 
 
-# 🔵 OMR Sheet Evaluation System
+#  OMR Sheet Evaluation System
 
 > An automated Optical Mark Recognition (OMR) pipeline that detects, classifies, and scores bubble answers on exam sheets using **Computer Vision** and a **Convolutional Neural Network (CNN)**.
 
 ---
 
-## 📸 Screenshots
+##Result of the GUI
 
 | OMR Sheet Input | Evaluator UI Output |
 |---|---|
@@ -14,7 +14,7 @@
 
 ---
 
-## 📌 Overview
+##  Overview
 
 This project automates the evaluation of OMR (bubble sheet) answer papers. Instead of manual checking, the system:
 
@@ -24,7 +24,7 @@ This project automates the evaluation of OMR (bubble sheet) answer papers. Inste
 
 ---
 
-## 🧠 CNN Architecture
+##  CNN Architecture
 
 The model is a multi-layer CNN trained to classify individual bubble crops into 3 classes.
 
@@ -42,11 +42,11 @@ Hyperparameters were tuned automatically using **Keras Tuner (RandomSearch)** ac
 
 ---
 
-## 🔍 Image Preprocessing
+## Image Preprocessing
 
 ### Bubble Detection with Otsu's Thresholding
 
-![Otsu Thresholding](images/otsu_thresholding.png)
+![Image Alt](https://github.com/prasnabasnet/OMR-Sheet-Evaluation-using-CNN/blob/main/otsuthreshold.png?raw=true)
 
 Each OMR sheet is preprocessed through:
 - **Skew Correction** — Rotates the sheet to align it properly
@@ -57,7 +57,7 @@ Each OMR sheet is preprocessed through:
 
 ---
 
-## 📊 Results
+## Results
 
 ### Training & Validation Accuracy
 
@@ -115,7 +115,7 @@ The desktop GUI allows teachers to:
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 omr-evaluation-system/
@@ -137,43 +137,4 @@ omr-evaluation-system/
 └── README.md
 ```
 
----
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-```bash
-pip install tensorflow keras-tuner opencv-python-headless matplotlib scikit-learn seaborn
-```
-
-### Run the Pipeline
-
-**Step 1 — Extract bubbles from raw OMR images:**
-```bash
-python bubble_extraction.py
-```
-
-**Step 2 — Manually label extracted bubbles** into `filled/`, `empty/`, `invalid/` folders, then split:
-```bash
-python dataset_split.py
-```
-
-**Step 3 — Train the CNN model:**
-```bash
-python cnn_training.py
-```
-
-**Step 4 — Launch the GUI evaluator:**
-```bash
-python gui_evaluator.py
-```
-
----
-
-## 👤 Author
-
-**Prasna Basnet**
-- 📧 [prasnabasnet18@gmail.com](mailto:prasnabasnet18@gmail.com)
-- 🐙 [github.com/prasnabasnet](https://github.com/prasnabasnet)
-- 📍 Jhapa, Nepal
