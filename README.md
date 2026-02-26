@@ -67,7 +67,7 @@ The model converges quickly and achieves **~99% validation accuracy** within a f
 
 ### Training & Validation Loss
 
-![Loss Plot](images/loss_plot.png)
+![Image Alt](https://github.com/prasnabasnet/OMR-Sheet-Evaluation-using-CNN/blob/main/t&vloss.jpg?raw=true)
 
 Training loss drops sharply and validation loss remains consistently low, indicating no significant overfitting.
 
