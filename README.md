@@ -83,13 +83,6 @@ Training loss drops sharply and validation loss remains consistently low, indica
 
 **Overall Test Accuracy: ~99.4%**
 
-### Softmax Classification Boundary
-
-![Softmax Classification](images/softmax_classification.png)
-
-The softmax output layer cleanly separates the 3 bubble classes in feature space.
-
----
 
 ## 🖥️ GUI Interface
 
