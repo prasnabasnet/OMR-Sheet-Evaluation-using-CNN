@@ -1,8 +1,3 @@
-#OMR Sheet Evaluation Using CNN
-- An automated Optical Mark Recognition (OMR) pipeline that detects, classifies, and scores bubble answers on exam sheets using Computer Vision and a Convolutional Neural Network (CNN).
-
-- OMR Sheet input
-  ![Image Alt](https://github.com/prasnabasnet/OMR-Sheet-Evaluation-using-CNN/blob/main/omrdataset.jpg?raw=true)
 
 
 # 🔵 OMR Sheet Evaluation System
@@ -29,45 +24,11 @@ This project automates the evaluation of OMR (bubble sheet) answer papers. Inste
 
 ---
 
-## 🏗️ System Architecture
-
-The pipeline is divided into 4 stages:
-
-```
-📄 Raw OMR Image
-      │
-      ▼
-┌─────────────────────┐
-│  Stage 1: Bubble    │  Skew correction → Grayscale → Gaussian Blur
-│  Extraction         │  → Adaptive Threshold → Contour Detection
-└─────────────────────┘
-      │
-      ▼
-┌─────────────────────┐
-│  Stage 2: Dataset   │  Manual labeling → 70/15/15 Train/Val/Test split
-│  Preparation        │
-└─────────────────────┘
-      │
-      ▼
-┌─────────────────────┐
-│  Stage 3: CNN       │  Keras Tuner (RandomSearch) → Best hyperparameters
-│  Training           │  → Train best model → Save as .h5
-└─────────────────────┘
-      │
-      ▼
-┌─────────────────────┐
-│  Stage 4: GUI       │  Upload sheet → Auto-detect → Score → Display
-│  Evaluation         │
-└─────────────────────┘
-```
-
----
-
 ## 🧠 CNN Architecture
 
 The model is a multi-layer CNN trained to classify individual bubble crops into 3 classes.
 
-![CNN Architecture](images/cnn_architecture.png)
+!![Image Alt](https://github.com/prasnabasnet/OMR-Sheet-Evaluation-using-CNN/blob/main/cnn_architecture.png?raw=true)
 
 | Layer | Details |
 |---|---|
