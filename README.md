@@ -4,3 +4,215 @@
 - OMR Sheet input
   ![Image Alt](https://github.com/prasnabasnet/OMR-Sheet-Evaluation-using-CNN/blob/main/omrdataset.jpg?raw=true)
 
+
+# 🔵 OMR Sheet Evaluation System
+
+> An automated Optical Mark Recognition (OMR) pipeline that detects, classifies, and scores bubble answers on exam sheets using **Computer Vision** and a **Convolutional Neural Network (CNN)**.
+
+---
+
+## 📸 Screenshots
+
+| OMR Sheet Input | Evaluator UI Output |
+|---|---|
+| ![OMR Sheet](images/omrdataset.jpg) | ![Evaluator UI](images/result.jpg) |
+
+---
+
+## 📌 Overview
+
+This project automates the evaluation of OMR (bubble sheet) answer papers. Instead of manual checking, the system:
+
+1. **Detects** all bubbles on a scanned OMR sheet using OpenCV
+2. **Classifies** each bubble as `filled`, `empty`, or `invalid` using a trained CNN model
+3. **Scores** the paper and displays results in a GUI interface
+
+---
+
+## 🏗️ System Architecture
+
+The pipeline is divided into 4 stages:
+
+```
+📄 Raw OMR Image
+      │
+      ▼
+┌─────────────────────┐
+│  Stage 1: Bubble    │  Skew correction → Grayscale → Gaussian Blur
+│  Extraction         │  → Adaptive Threshold → Contour Detection
+└─────────────────────┘
+      │
+      ▼
+┌─────────────────────┐
+│  Stage 2: Dataset   │  Manual labeling → 70/15/15 Train/Val/Test split
+│  Preparation        │
+└─────────────────────┘
+      │
+      ▼
+┌─────────────────────┐
+│  Stage 3: CNN       │  Keras Tuner (RandomSearch) → Best hyperparameters
+│  Training           │  → Train best model → Save as .h5
+└─────────────────────┘
+      │
+      ▼
+┌─────────────────────┐
+│  Stage 4: GUI       │  Upload sheet → Auto-detect → Score → Display
+│  Evaluation         │
+└─────────────────────┘
+```
+
+---
+
+## 🧠 CNN Architecture
+
+The model is a multi-layer CNN trained to classify individual bubble crops into 3 classes.
+
+![CNN Architecture](images/cnn_architecture.png)
+
+| Layer | Details |
+|---|---|
+| Input | 64×64 grayscale image |
+| Conv Block 1 | Conv2D × 2 + MaxPooling |
+| Conv Block 2 | Conv2D × 2 + MaxPooling |
+| Dense | Fully connected + Dropout |
+| Output | 3 classes: `filled`, `empty`, `invalid` |
+
+Hyperparameters were tuned automatically using **Keras Tuner (RandomSearch)** across 5 trials, optimizing for `val_accuracy`.
+
+---
+
+## 🔍 Image Preprocessing
+
+### Bubble Detection with Otsu's Thresholding
+
+![Otsu Thresholding](images/otsu_thresholding.png)
+
+Each OMR sheet is preprocessed through:
+- **Skew Correction** — Rotates the sheet to align it properly
+- **Grayscale Conversion** — Removes color noise
+- **Gaussian Blur** — Smooths out minor artifacts
+- **Adaptive Thresholding** — Converts to binary image for contour detection
+- **Contour Filtering** — Filters by area (400–2500 px²), size (20–60 px), and aspect ratio (0.8–1.2) to isolate bubbles
+
+---
+
+## 📊 Results
+
+### Training & Validation Accuracy
+
+![Accuracy Plot](images/accuracy_plot.png)
+
+The model converges quickly and achieves **~99% validation accuracy** within a few epochs.
+
+### Training & Validation Loss
+
+![Loss Plot](images/loss_plot.png)
+
+Training loss drops sharply and validation loss remains consistently low, indicating no significant overfitting.
+
+### Confusion Matrix
+
+![Confusion Matrix](images/confusion_matrix.png)
+
+| Class | Correct | Misclassified |
+|---|---|---|
+| empty | 95 / 95 | 0 |
+| filled | 235 / 237 | 2 |
+| invalid | 199 / 200 | 1 |
+
+**Overall Test Accuracy: ~99.4%**
+
+### Softmax Classification Boundary
+
+![Softmax Classification](images/softmax_classification.png)
+
+The softmax output layer cleanly separates the 3 bubble classes in feature space.
+
+---
+
+## 🖥️ GUI Interface
+
+The desktop GUI allows teachers to:
+- Upload any scanned OMR sheet
+- View the detected answer per question (A/B/C/D, Invalid, or Unfilled)
+- See the final score automatically calculated
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Tools |
+|---|---|
+| Language | Python 3 |
+| Deep Learning | TensorFlow, Keras |
+| Hyperparameter Tuning | Keras Tuner |
+| Computer Vision | OpenCV |
+| Data Processing | NumPy, scikit-learn |
+| Visualization | Matplotlib, Seaborn |
+| GUI | Tkinter |
+| Environment | Google Colab + Google Drive |
+
+---
+
+## 📁 Project Structure
+
+```
+omr-evaluation-system/
+│
+├── bubble_extraction.py       # Stage 1: Extract bubbles from OMR sheets
+├── dataset_split.py           # Stage 2: Split dataset into train/val/test
+├── cnn_training.py            # Stage 3: CNN model training with Keras Tuner
+├── gui_evaluator.py           # Stage 4: Desktop GUI for evaluation
+│
+├── omr_dataset/
+│   ├── train/
+│   │   ├── filled/
+│   │   ├── empty/
+│   │   └── invalid/
+│   ├── val/
+│   └── test/
+│
+├── best_cnn_model.h5          # Saved trained model
+└── README.md
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+```bash
+pip install tensorflow keras-tuner opencv-python-headless matplotlib scikit-learn seaborn
+```
+
+### Run the Pipeline
+
+**Step 1 — Extract bubbles from raw OMR images:**
+```bash
+python bubble_extraction.py
+```
+
+**Step 2 — Manually label extracted bubbles** into `filled/`, `empty/`, `invalid/` folders, then split:
+```bash
+python dataset_split.py
+```
+
+**Step 3 — Train the CNN model:**
+```bash
+python cnn_training.py
+```
+
+**Step 4 — Launch the GUI evaluator:**
+```bash
+python gui_evaluator.py
+```
+
+---
+
+## 👤 Author
+
+**Prasna Basnet**
+- 📧 [prasnabasnet18@gmail.com](mailto:prasnabasnet18@gmail.com)
+- 🐙 [github.com/prasnabasnet](https://github.com/prasnabasnet)
+- 📍 Jhapa, Nepal
